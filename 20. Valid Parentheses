@@ -1,0 +1,21 @@
+class Solution {
+    public boolean isValid(String s) {
+        int n = s.length();
+        char arr[] = new char[n];
+        int i = 0;
+        for(char ch : s.toCharArray()){
+            if(ch == '(' || ch == '{' || ch == '['){
+                arr[i++] = ch;
+            }
+            else{
+                if(i == 0) return false;
+                char c = arr[i-1];
+                if(c == '(' && ch == ')') i--;
+                else if (c == '[' && ch == ']') i--;
+                else if (c == '{' && ch == '}') i--;
+                else return false;
+            }
+        }
+        if(i==0) return true; return false;
+    }
+}
